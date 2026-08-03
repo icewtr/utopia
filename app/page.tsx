@@ -33,13 +33,12 @@ export default function Home() {
 
       <main className="relative z-10 flex min-h-screen flex-col pt-20 pl-16 sm:pl-20 md:pl-24">
         <div className="w-fit max-w-xl">
-          <h1 className="text-6xl leading-none tracking-wide sm:text-7xl md:text-8xl">
+          <h1 className="text-6xl leading-none tracking-wide sm:text-7xl md:text-8xl mt-50">
             UTOPIA
           </h1>
 
-          <div className="mt-2 flex w-full justify-between text-sm tracking-widest sm:text-base">
+          <div className="mt-2 flex w-full justify-between text-sm tracking-widest sm:text-base mb-30">
             <span>DALLAS, TX  •  JAN 14–17</span>
-            <span>JAN 14-17</span>
           </div>
 
           <p className="mt-10 max-w-md text-lg leading-relaxed sm:text-xl">
@@ -48,7 +47,7 @@ export default function Home() {
           </p>
 
           <a
-            href="#"
+            href="https://rsvp.hackclub.community/utopia"
             className="mt-10 inline-flex w-full max-w-xs items-center justify-center rounded-full bg-black/50 px-10 py-4 text-lg backdrop-blur-md transition-colors hover:bg-black/60 sm:max-w-sm"
           >
             RSVP Here!
