@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Jacques_Francois } from "next/font/google";
 import landingBg from "@/src/images/LANDING_BG.jpg";
 import WhatIsSection from "./components/WhatIsSection";
+import ThreeSteps from "./components/ThreeSteps";
 
 const jacquesFrancois = Jacques_Francois({
   weight: "400",
@@ -58,6 +59,7 @@ export default function Home() {
       </section>
 
       <WhatIsSection />
+      <ThreeSteps />
     </div>
   );
 }

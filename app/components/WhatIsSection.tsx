@@ -43,7 +43,7 @@ const polaroids = [
 export default function WhatIsSection() {
   return (
     <section className={`${jacquesFrancois.className} bg-utopia-plum px-6 py-20 sm:px-10 sm:py-24 lg:px-16`}>
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto max-w-7xl">
         <div className="overflow-hidden rounded-3xl bg-utopia-plum-light px-8 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
           <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <div className="text-white">
@@ -97,7 +97,7 @@ export default function WhatIsSection() {
         </div>
 
         <div
-          className={`${inter.className} relative z-10 -mt-6 mx-4 max-w-md rounded-sm border border-utopia-accent/20 bg-utopia-blush px-6 py-5 text-sm leading-relaxed text-utopia-plum shadow-md sm:mx-8 sm:text-base lg:mx-12`}
+          className={`${inter.className} relative z-10 -mt-6 mx-4 max-w-md rounded-2xl border border-utopia-accent/20 bg-utopia-blush px-8 py-6 text-sm leading-relaxed text-utopia-plum shadow-md sm:mx-8 sm:text-base lg:mx-12`}
         >
           <strong><Highlight> New? Need help? </Highlight></strong> Not to fear! Guides and tutorials available!!!
         </div>
