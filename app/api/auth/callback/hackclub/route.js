@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
+import { db } from '@/lib/db';
 import {
   authErrorRedirectUrl,
   setSessionOnResponse,
@@ -91,6 +92,27 @@ export async function GET(request) {
           'missing_slack_id — ensure the login scope includes slack_id'
         )
       );
+    }
+
+    // --- Database Sync ---
+    try {
+      await db.user.upsert({
+        where: { slackId: userSlackId },
+        update: {
+          username: userName || 'Anonymous',
+          hcaVerified: true,
+        },
+        create: {
+          slackId: userSlackId,
+          username: userName || 'Anonymous',
+          hcaVerified: true,
+          role: 'USER',
+        },
+      });
+    } catch (dbError) {
+      console.error('Failed to sync user to database:', dbError);
+      // We continue the session even if DB fails, 
+      // but you might want to block them here later.
     }
 
     const response = NextResponse.redirect(new URL('/dashboard', request.url));

@@ -1,0 +1,81 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String    @id @default(uuid())
+  slackId      String    @unique @map("slack_id")
+  username     String
+  role         Role      @default(USER)
+  hcaVerified  Boolean   @default(false) @map("hca_verified")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  projects     Project[]
+  devlogs      Devlog[]
+
+  @@map("users")
+}
+
+model Project {
+  id                String    @id @default(uuid())
+  userSlackId       String    @map("user_slack_id")
+  title             String
+  description       String?
+  
+  // Hackatime folder mapping
+  hackatimeProjects String[]  @default([]) @map("hackatime_projects")
+  
+  // Aggregated live metrics & fraud tracking
+  totalTimeSeconds  Int       @default(0) @map("total_time_seconds")
+  avgDailySeconds   Int       @default(0) @map("avg_daily_seconds")
+  primaryEditor     String?   @map("primary_editor")
+  
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  user              User      @relation(fields: [userSlackId], references: [slackId], onDelete: Cascade)
+  devlogs           Devlog[]
+
+  @@map("projects")
+}
+
+model Devlog {
+  id                String    @id @default(uuid())
+  projectId         String    @map("project_id")
+  userSlackId       String    @map("user_slack_id")
+  
+  devlogNumber      Int       @map("devlog_number")
+  title             String
+  content           String
+  wordCount         Int       @default(0) @map("word_count")
+  
+  // Delta metrics & snapshots
+  timeLoggedSeconds Int       @default(0) @map("time_logged_seconds")
+  languagesSnapshot Json      @default("{}") @map("languages_snapshot")
+  topEditor         String?   @map("top_editor")
+  
+  // Proof of work & verification
+  lapseUrls         String[]  @default([]) @map("lapse_urls")
+  isFlagged         Boolean   @default(false) @map("is_flagged")
+  flagReason        String?   @map("flag_reason")
+  
+  // Time boundaries
+  windowStartedAt   DateTime  @map("window_started_at")
+  windowEndedAt     DateTime  @default(now()) @map("window_ended_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+
+  project           Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user              User      @relation(fields: [userSlackId], references: [slackId], onDelete: Cascade)
+
+  @@map("devlogs")
+}
