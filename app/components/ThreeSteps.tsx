@@ -1,5 +1,7 @@
 import { Inter, Jacques_Francois } from "next/font/google";
 import eventImage from "@/src/images/EVENT.jpg";
+import buildImage from "@/src/images/BUILD.png";
+import designImage from "@/src/images/DESIGN.jpg";
 import StepCard from "./StepCard";
 
 const jacquesFrancois = Jacques_Francois({
@@ -35,16 +37,18 @@ export default function ThreeSteps() {
             step="STEP ONE"
             title="Design"
             description="Design to your heart's content, whether it be through custom builds, circuitry, or coding!"
-            caption="(placeholder caption)"
+            caption="There are no limits to what you can do, just be creative!"
             polaroidGradient="from-[#7c3aed]/70 via-[#db2777]/60 to-[#f97316]/70"
+            polaroidImage={designImage}
           />
 
           <StepCard
             step="STEP TWO"
             title="Build it"
             description="You can get funded up to TWO HUNDRED DOLLARS to build your cool project!"
-            caption="(placeholder caption)"
+            caption="The ES-01, a cool smart watch designed by a hack clubber!"
             polaroidGradient="from-[#6d28d9]/70 via-[#be185d]/60 to-[#ea580c]/70"
+            polaroidImage={buildImage}
           />
 
           <StepCard
