@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { Jacques_Francois } from "next/font/google";
-import landingBg from "@/src/images/LANDING_BG.jpg";
+import { useEffect, useState } from "react";
+import landingBg from "@/src/images/LANDING_BG.png";
 import WhatIsSection from "./components/WhatIsSection";
 import ThreeSteps from "./components/ThreeSteps";
 import FAQ from "./components/FAQ";
@@ -11,8 +14,50 @@ const jacquesFrancois = Jacques_Francois({
 });
 
 export default function Home() {
+  const [showHeader, setShowHeader] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowHeader(window.scrollY > 80);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className={jacquesFrancois.className}>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          showHeader
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex w-full items-center justify-between border-b border-white/10 bg-[#2a1535]/60 px-4 py-4 backdrop-blur-md sm:px-6 sm:py-5 lg:px-8 lg:py-6">
+          <div className="flex items-center gap-4 sm:gap-5">
+            <span className="text-2xl tracking-[0.18em] text-white sm:text-3xl lg:text-4xl">
+              UTOPIA
+            </span>
+
+            <a
+              href="https://rsvp.hackclub.community/utopia"
+              className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/15 sm:px-5 sm:text-base"
+            >
+              RSVP!
+            </a>
+          </div>
+
+          <img
+            src="https://assets.hackclub.com/flag-standalone-bw.svg"
+            alt="Hack Club flag"
+            className="h-10 w-10 object-contain sm:h-11 sm:w-11 lg:h-12 lg:w-12"
+          />
+        </div>
+      </header>
+
       <section className="relative min-h-screen overflow-hidden text-white">
         <Image
           src={landingBg}

@@ -1,4 +1,8 @@
+import Image from "next/image";
 import { Inter, Jacques_Francois } from "next/font/google";
+import exA from "@/src/images/EX_A.jpg";
+import exB from "@/src/images/EX_B.jpg";
+import exC from "@/src/images/EX_C.jpg";
 
 const jacquesFrancois = Jacques_Francois({
   weight: "400",
@@ -26,17 +30,17 @@ const polaroids = [
   {
     rotate: "-rotate-6",
     offset: "left-0 top-6",
-    gradient: "from-[#7c3aed]/70 via-[#db2777]/60 to-[#f97316]/70",
+    image: exC,
   },
   {
     rotate: "rotate-3",
     offset: "left-8 top-2",
-    gradient: "from-[#6d28d9]/70 via-[#be185d]/60 to-[#ea580c]/70",
+    image: exB,
   },
   {
     rotate: "-rotate-2",
     offset: "left-16 top-0",
-    gradient: "from-[#5b21b6]/70 via-[#9d174d]/60 to-[#c2410c]/70",
+    image: exA,
   },
 ];
 
@@ -60,13 +64,13 @@ export default function WhatIsSection() {
 
               <div className="mt-8 space-y-6 text-base leading-relaxed sm:text-lg">
                 <p>
-                  Utopia is a program where you design or build cool wearable tech,
+                  Utopia is a program where you design or build cool portable tech,
                   then attend a {" "}
                   <strong><Highlight>4-day hackathon in Dallas, TX.</Highlight></strong>
                 </p>
                 <p>
                   You can qualify by completing at least{" "}
-                  <strong><Highlight>30 hours of building,</Highlight></strong> with help from the Hack Club community!
+                  <strong><Highlight>~30 hours of building,</Highlight></strong> with help from the Hack Club community!
                 </p>
                 <p>
                   You can also get  {""}<strong><Highlight>Cool Prizes</Highlight></strong> and up to {" "}
@@ -83,14 +87,16 @@ export default function WhatIsSection() {
                     key={index}
                     className={`absolute ${photo.offset} ${photo.rotate} w-44 border-[6px] border-utopia-blush bg-utopia-blush p-1.5 shadow-lg sm:w-52`}
                   >
-                    <div
-                      className={`aspect-[4/5] bg-gradient-to-br ${photo.gradient}`}
+                    <Image
+                      src={photo.image}
+                      alt="Utopia example"
+                      className="aspect-[4/5] object-cover"
                     />
                   </div>
                 ))}
               </div>
               <p className="mt-8 text-center text-sm text-utopia-highlight underline decoration-utopia-accent underline-offset-4 sm:text-base">
-                <Intertext>teens building cool tech at past hackathons (someone pls add smth)</Intertext>
+                <Intertext>Teens building cool tech at Outpost in July!</Intertext>
               </p>
             </div>
           </div>

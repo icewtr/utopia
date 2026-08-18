@@ -16,6 +16,7 @@ interface StepCardProps {
   step: string;
   title: string;
   description: string;
+  caption?: string;
   polaroidGradient: string;
   polaroidImage?: string | StaticImageData;
 }
@@ -24,11 +25,12 @@ export default function StepCard({
   step,
   title,
   description,
+  caption,
   polaroidGradient,
   polaroidImage,
 }: StepCardProps) {
   return (
-    <div className="flex h-[36rem] flex-col rounded-3xl bg-utopia-plum-light px-8 pt-10 sm:px-10 sm:pt-12">
+    <div className="flex h-[40rem] pb-5 flex-col rounded-3xl bg-utopia-plum-light px-8 pt-10 sm:px-10 sm:pt-12">
       <span
         className={`${inter.className} text-sm font-medium tracking-[0.25em] text-utopia-cream`}
       >
@@ -62,6 +64,14 @@ export default function StepCard({
           )}
         </div>
       </div>
+
+      {caption ? (
+        <p
+          className={`${jacquesFrancois.className} pb-6 text-center text-lg italic text-utopia-highlight`}
+        >
+          {caption}
+        </p>
+      ) : null}
     </div>
   );
 }
