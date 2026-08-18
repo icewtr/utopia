@@ -89,7 +89,7 @@ export default function Home() {
             </div>
 
             <p className="mt-[12%] max-w-md text-lg leading-relaxed sm:text-xl">
-              Design or build 30 hours of wearable tech, then attend a 4-day
+              Design or build 30 hours of portable tech, then attend a 4-day
               Hackathon in Dallas, TX.
             </p>
 
